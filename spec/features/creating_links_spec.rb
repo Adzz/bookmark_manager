@@ -5,10 +5,7 @@
 
 feature "creating links" do
 	scenario "Adding a name and url as a bookmark" do
-		visit "/"
-		click_link "Add Bookmark"
-		fill_in "Name", with: "Breadfish" 
-		fill_in "URL", with: "http://www.breadfish.co.uk/"
+		add_link
 		click_button "Add"
 		expect(page).to have_content "Breadfish"
 
