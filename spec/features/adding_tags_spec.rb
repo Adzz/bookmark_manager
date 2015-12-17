@@ -9,9 +9,8 @@ feature "Ading Tags to bookmarks" do
 		add_link
 		fill_in 'tag', with: "Irreverant"
 		click_button "Add"
-		within 'ul#links' do
-			expect(page).to have_content "Irreverant"
-		end
+		link = Link.first
+    expect(link.tags.map(&:name)).to include('Irreverant')
 	end
 
 

@@ -1,5 +1,3 @@
-require 'data_mapper'
-require 'dm-postgres-adapter'
 
 class Link
 
@@ -10,7 +8,5 @@ class Link
 		property :id, Serial
 		property :url, URI
 		property :name, String
-
-
 
 	end
