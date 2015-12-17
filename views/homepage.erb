@@ -4,13 +4,23 @@
 <h4>
 	<a href="/addlink">Add Bookmark</a> </h4>
 <br>
+<form method="post" action="/tags">
+	<input type="text" name="filter" placeholder="Filter By Tag" autofocus required>
+	<button type="submit" value="filter">Filter</button>
+</form>
 
 <ul id='links'>
   <% @links.each do |link| %>
     <li>
-      Title: <%= link.name %>
+      <p>Title: <%= link.name %>
       URL:   <%= link.url  %>
-
+      Tags: <%= link.tags.map(&:tag).join%>
+    </p>
     </li>
+
   <% end %>
+
+
+
 </ul>
+

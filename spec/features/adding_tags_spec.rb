@@ -6,13 +6,10 @@ feature "Ading Tags to bookmarks" do
 
 	scenario "When I add a bookmark, I would like to be able to add a tag" do
 
-		add_link
-		fill_in 'tag', with: "Irreverant"
-		click_button "Add"
+		add_link_and_tag
 		link = Link.first
-    expect(link.tags.map(&:name)).to include('Irreverant')
+    expect(link.tags.map(&:tag)).to include('Irreverant')
 	end
-
 
 
 end
