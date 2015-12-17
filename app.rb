@@ -8,9 +8,6 @@ require_relative "models/tags.rb"
 
 
 class BookmarkManager < Sinatra::Base
-
-
-
   get '/' do
   	@links = Link.all
     erb :homepage
@@ -21,19 +18,23 @@ class BookmarkManager < Sinatra::Base
   end
 
   post "/addlink" do
-    link = Link.new(url: params[:URL], name: params[:Name])
-    tag  = Tag.first_or_create(tag: params[:tag])
-    link.tags << tag                       
-    link.save                              
+    link = Link.create(url: params[:URL], name: params[:Name])
+    params[:tag].split(", ").each do |tag|
+      link.tags << Tag.create(tag: tag)
+    end
+    link.save                            
     redirect to('/')
   end
 
   post "/tags" do
      tag = Tag.first(tag: params[:filter])
-     @links = tag.tag ? tag.links : []
-    erb :filtered
+     if tag
+      @links = tag.links
+      erb :filtered
+     else
+      redirect "/"
+     end
   end
-
  
 
   # start the server if ruby file executed directly
