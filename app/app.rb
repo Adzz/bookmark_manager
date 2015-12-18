@@ -1,14 +1,33 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
-require_relative "data_mapper_setup.rb"
-require_relative "models/link.rb"
-require_relative "models/tags.rb"
+require_relative "../data_mapper_setup.rb"
+require_relative "./models/link.rb"
+require_relative "./models/tags.rb"
+require_relative "./models/users.rb"
 
 
 
 class BookmarkManager < Sinatra::Base
-  get '/' do
+  enable :sessions
+  set :session_secret, 'secret super'
+
+  get "/" do
+ 
+  end
+
+  get '/users/new' do
+    erb :signup
+  end
+
+  post '/users/new' do
+    user = User.create(name: params[:name],
+    email: params[:email], password: params[:password])
+    session[:user_id] = user.id
+    redirect "/bookmarks"
+  end
+
+  get '/bookmarks' do
   	@links = Link.all
     erb :homepage
   end
@@ -23,7 +42,7 @@ class BookmarkManager < Sinatra::Base
       link.tags << Tag.create(tag: tag)
     end
     link.save                            
-    redirect to('/')
+    redirect to('/bookmarks')
   end
 
   post "/tags/:tag" do
@@ -32,8 +51,14 @@ class BookmarkManager < Sinatra::Base
       @links = tag.links
       erb :filtered
      else
-      redirect "/"
+      redirect "/bookmarks"
      end
+  end
+
+  helpers do
+   def current_user
+     @current_user ||= User.get(session[:user_id])
+   end
   end
  
 

@@ -8,7 +8,7 @@ feature "So I can quickly navigate to website, I would like to see my favs on th
 
 	scenario "View list of favourites" do
 		Link.create(url: 'http://www.isitchristmas.com', name: "Is it Christmas")
-		visit "/"
+		visit "/bookmarks"
 		expect(page.status_code).to eq 200
 		expect(page).to have_content "Is it Christmas"
 	end
