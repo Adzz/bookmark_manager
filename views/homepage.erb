@@ -4,7 +4,7 @@
 <h4>
 	<a href="/addlink">Add Bookmark</a> </h4>
 <br>
-<form method="post" action="/tags">
+<form method="post" action="/tags/:tag">
 	<input type="text" name="filter" placeholder="Filter By Tag" autofocus required>
 	<button type="submit" value="filter">Filter</button>
 </form>
@@ -14,7 +14,7 @@
     <li>
       <p>Title: <%= link.name %>
       URL:   <%= link.url  %>
-      Tags: <%= link.tags.map(&:tag).join%>
+      Tags: <%= link.tags.map(&:tag).join(" ")%>
     </p>
     </li>
 

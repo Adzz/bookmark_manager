@@ -26,7 +26,7 @@ class BookmarkManager < Sinatra::Base
     redirect to('/')
   end
 
-  post "/tags" do
+  post "/tags/:tag" do
      tag = Tag.first(tag: params[:filter])
      if tag
       @links = tag.links

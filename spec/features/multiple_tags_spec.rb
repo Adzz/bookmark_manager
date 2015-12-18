@@ -8,7 +8,7 @@ feature "Adding multiple tags to a link" do
 		add_link
 		fill_in 'tag', with: "Irreverant, Funny"
 		click_button "Add"
-		link = Link.first
+		link = Link[0]
   	expect(link.tags.map(&:tag)).to include('Irreverant',"Funny")
 
 	end
