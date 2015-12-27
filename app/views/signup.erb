@@ -3,8 +3,8 @@
 <h1>Please sign up</h1>
 
 <form method="post" action="/users/new">
-	<input type="text" name="name" placeholder="Tell us your name" autofocus required>
-	<input type="email" name="email" placeholder="Enter one's email" required>
+	<input type="text" name="name" placeholder="Tell us your name" value="<%= @user.name %>" autofocus required>
+	<input type="email" name="email" placeholder="Enter one's email" value='<%= @user.email %>' required>
 	<input type="password" name="password" placeholder="Make it long" required>
 	<input type="password" name="passwordconf" placeholder="Make it long, again" required>
 	<button type="submit" value="Sign up"><p>Sign up</p></button>

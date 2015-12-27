@@ -1,6 +1,9 @@
 
-<h1> Links </h1>
+<% if current_user %>
+        <h4>Welcome, <%= current_user.name %></h4>
+      <% end %>
 
+<h1> Links </h1>
 
 
 <h4>

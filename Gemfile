@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
-
+gem "sinatra-flash"
 gem "rspec"
 gem "capybara"
 gem "rspec-sinatra"
